@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="./website/img/timer.png" alt="Timer Screen" width="80%">
+  <a href="https://poker.cyberpnkz.net/"><img src="./website/img/timer.png" alt="Timer Screen"></a>
 </p>
 
 <p align="center">
-  <a href="https://gitlab.com/cyberpnkz/poker"><img src="https://img.shields.io/github/stars/k44sh/poker?logo=github" alt="GitHub Stars"></a>
+  <a href="https://github.com/k44sh/poker"><img src="https://img.shields.io/github/stars/k44sh/poker?logo=github" alt="GitHub Stars"></a>
 </p>
 
 ---
@@ -62,7 +62,7 @@ Poker Timer ensures a seamless user experience by saving your game settings and 
 This functionality is powered by the browser's `localStorage`, allowing you to resume your game or keep your customized configurations intact even after closing or refreshing the page.
 
 <p align="center">
-  <img src="./website/img/settings.png" alt="Settings Screen" width="80%">
+  <a href="https://gitlab.com/cyberpnkz/poker"><img src="./website/img/settings.png" alt="Settings Screen"></a>
 </p>
 
 #### How It Works
