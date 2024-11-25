@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Poker Timer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Poker Timer is a web application to manage poker games">
+        <meta name="keywords" content="Poker Timer, Poker Clock, Poker Game Manager, Custom Blinds, Poker Breaks, Timer App, Poker Tournament, Free">
+        <meta name="author" content="k44sh">
+        <meta property="og:title" content="Poker Timer">
+        <meta property="og:description" content="Poker Timer is a web application to manage poker games">
+        <meta property="og:image" content="./img/favicon.png">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://poker.cyberpnkz.net/">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Poker Timer">
+        <meta name="twitter:description" content="Poker Timer is a web application to manage poker games">
+        <meta name="twitter:image" content="./img/favicon.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="preload" as="image" href="./img/small.png">
+        <link rel="preload" as="image" href="./img/big.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon.png">
+        <link rel="shortcut icon" href="./img/favicon.ico">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./styles.css">
+        <link rel="canonical" href="https://poker.cyberpnkz.net/">
+    </head>
+    <body>
+        <audio id="levelUpSound" src="./level.mp3" preload="auto"></audio>
+        <div class="poker">
+            <!-- Data -->
+            <div class="data">
+                <div class="game">
+                    <div id="infosTitle" class="title">Infos</div>
+                    <table>
+                        <tbody id="infoBody">
+                            <tr>
+                                <td style="text-align: left;"><strong id="stackLabel">Starting Stack :</strong></td>
+                                <td><span id="stackValue">--</span></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;"><strong id="buyInLabel">Buy-In :</strong></td>
+                                <td><span id="buyInValue">--</span></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;"><strong id="bountyLabel">Bounty :</strong></td>
+                                <td><span id="bountyValue">--</span></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;"><strong id="rebuyUntilLabel">Rebuy Until Level :</strong></td>
+                                <td><span id="rebuyUntilValue">--</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="levels">
+                    <div id="levelsTitle" class="title">Niveaux</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th id="headerLevel">Levels</th>
+                                <th id="headerSmallBlind">Small Blind</th>
+                                <th id="headerBigBlind">Big Blind</th>
+                                <th id="headerAnte">Ante</th>
+                                <th id="headerDuration">Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody id="levelsBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Timer -->
+            <div class="timer">
+                <div id="level" class="level"></div>
+                <div id="time" class="time">--:--</div>
+                <div class="chips">
+                    <div class="chip" style="background-image: url('./img/small.png');"><span id="smallBlind">--</span></div>
+                    <div class="chip" style="background-image: url('./img/big.png');"><span id="bigBlind">--</span></div>
+                    <div class="chip small" style="background-image: url('./img/small.png');"><span id="ante">--</span>
+                    </div>
+                </div>
+                <div class="progress-bar mb-4">
+                    <div id="progress" class="progress"></div>
+                </div>
+                <div class="infos">
+                    <div id="nextBlindsContainer" class="text-light"><span id="nextBlindsLabel">Next Blinds :</span> <span id="nextSmallBlind">--</span> / <span id="nextBigBlind">--</span></div>
+                    <div id="nextAnteContainer" class="text-light" style="display: none;"> <span id="nextAnteLabel">Next Ante :</span> <span id="nextAnte">--</span></div>
+                    <div id="nextBreakContainer" class="text-light"><span id="nextBreakLabel">Next break in :</span> <span id="nextBreak">--:--</span></div>
+                    <div id="totalGameDurationContainer" class="text-light"><span id="totalGameDurationLabel">Total Game Duration :</span> <span id="totalGameDuration">00:00</span></div>
+                </div>
+                <div class="settings-bar">
+                    <button id="controlButton" class="app-btn app-btn-start" onclick="controlGame()"></button>
+                    <button id="nextButton" class="app-btn app-btn-next" onclick="nextLevel()"></button>
+                    <button id="previousButton" class="app-btn app-btn-previous" onclick="previousLevel()"></button>
+                    <button id="resetButton" class="app-btn app-btn-reset" onclick="resetGame()"></button>
+                    <button id="settingsButton" class="app-btn app-btn-settings" onclick="openSettings()"></button>
+                </div>
+            </div>
+        </div>
+        <!-- Settings -->
+        <div id="settings" class="modal fade" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog settings-container">
+                <div class="modal-content bg-dark text-light p-4">
+                    <h2 id="settingsTitle" class="text-center"></h2>
+                    <table id="gameContainer" class="mb-3">
+                        <thead>
+                            <tr>
+                                <th id="stackInputLabel"></th>
+                                <th id="buyInInputLabel"></th>
+                                <th id="bountyInputLabel"></th>
+                                <th id="rebuyUntilInputLabel"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="number" id="stackInput" class="form-control" style="width: 200px;" onchange="updateGameInfo('stack', this.value)"></td>
+                                <td><input type="number" id="buyInInput" class="form-control" style="width: 120px;" onchange="updateGameInfo('buyIn', this.value)"></td>
+                                <td><input type="number" id="bountyInput" class="form-control" style="width: 120px;" onchange="updateGameInfo('bounty', this.value)"></td>
+                                <td><input type="number" id="rebuyUntilInput" class="form-control" style="width: 200px;" onchange="updateGameInfo('rebuyUntilLevel', this.value)"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="levelsContainer" class="mb-3"></div>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button id="addLevelButton" class="btn btn-success" onclick="addLevel()">Ajouter Niveau</button>
+                        <button id="addBreakButton" class="btn btn-primary" onclick="addBreak()">Créer un Break</button>
+                        <button id="resetLevelsButton" class="btn btn-danger" onclick="resetLevels()">Reset</button>
+                        <button id="closeButton" class="btn btn-secondary" onclick="closeSettings()">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+        <script src="./script.js"></script>
+        <script>
+            function updateVh() {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+            updateVh();
+            window.addEventListener('resize', updateVh);
+        </script>        
+    </body>
+</html>
