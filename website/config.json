@@ -1,0 +1,25 @@
+{
+ 	"levels": [
+ 	 	{ "smallBlind": 1, "bigBlind": 2, "ante": 0, "duration": 1200 },
+ 	 	{ "smallBlind": 2, "bigBlind": 4, "ante": 0, "duration": 1200 },
+ 	 	{ "smallBlind": 3, "bigBlind": 6, "ante": 0, "duration": 1200 },
+ 	 	{ "duration": 900, "isBreak": true },
+ 	 	{ "smallBlind": 5, "bigBlind": 10, "ante": 0, "duration": 1200 },
+ 	 	{ "smallBlind": 7, "bigBlind": 14, "ante": 0, "duration": 1200 },
+ 	 	{ "smallBlind": 10, "bigBlind": 20, "ante": 0, "duration": 1200 },
+ 	 	{ "duration": 1200, "isBreak": true },
+ 	 	{ "smallBlind": 15, "bigBlind": 30, "ante": 0, "duration": 1200 },
+ 	 	{ "smallBlind": 20, "bigBlind": 40, "ante": 0, "duration": 1200 },
+ 	 	{ "smallBlind": 25, "bigBlind": 50, "ante": 0, "duration": 1200 },
+ 	 	{ "duration": 900, "isBreak": true },
+ 	 	{ "smallBlind": 50, "bigBlind": 100, "ante": 0, "duration": 1200 },
+ 	 	{ "smallBlind": 75, "bigBlind": 150, "ante": 0, "duration": 1200 },
+ 	 	{ "smallBlind": 100, "bigBlind": 200, "ante": 0, "duration": 1200 },
+ 	 	{ "duration": 900, "isBreak": true },
+ 	 	{ "smallBlind": 200, "bigBlind": 400, "ante": 100, "duration": 0 }
+ 	],
+	"stack": 650,
+	"buyIn": 40,
+	"rebuyUntilLevel": 5,
+	"bounty": 5
+}

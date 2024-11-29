@@ -1,0 +1,12 @@
+pages:
+  stage: deploy
+  script:
+    - mv website public
+  artifacts:
+    paths:
+      - public
+  environment:
+    name: Production
+    url: $POKER_URL
+  only:
+    - main
